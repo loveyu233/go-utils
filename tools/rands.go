@@ -1,4 +1,4 @@
-package rands
+package tools
 
 import "crypto/rand"
 

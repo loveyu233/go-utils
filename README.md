@@ -4,16 +4,23 @@
 > 常用fiber返回
 
 ## ctx
-> 带过期时间的content,默认为10s
+> 生成带过期时间的content,默认为10s
 
-## rands
-> 生成指定位数的随机字符串
+## tools
+> compare 比大小
+> 
+> include 数组是否包含
+> 
+> rands 生成指定位数的随机字符串
+
+## pgtype
+> pgsql 数组类型
 
 ## security
 > 生成token
 
-## httpMiddlewares
-> http token 校验中间件
+## middlewares
+> fiber token 中间件
 
 # Client
 

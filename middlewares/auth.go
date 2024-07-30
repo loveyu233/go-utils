@@ -1,4 +1,4 @@
-package httpMiddlewares
+package middlewares
 
 import (
 	"encoding/json"
@@ -12,13 +12,13 @@ import (
 	"strings"
 )
 
-type Config struct {
+type FiberAuthConfig struct {
 	Secret          string
 	GetTokenStrFunc func(c *fiber.Ctx) string
 }
 
 var (
-	defaultConfig = &Config{
+	defaultConfig = &FiberAuthConfig{
 		Secret: public.JWTSECRET,
 		GetTokenStrFunc: func(c *fiber.Ctx) string {
 			token := c.Cookies("token")
@@ -32,15 +32,15 @@ var (
 
 type jwtDecodeFunc func(token string) (map[string]any, error)
 
-func configVerify(configs ...*Config) (jwtDecodeFunc, *Config) {
+func configVerify(configs ...*FiberAuthConfig) (jwtDecodeFunc, *FiberAuthConfig) {
 	var (
-		cfg *Config
+		cfg *FiberAuthConfig
 	)
 
 	if len(configs) > 0 && configs[0] != nil {
 		cfg = configs[0]
 	} else {
-		cfg = &Config{}
+		cfg = &FiberAuthConfig{}
 	}
 
 	if cfg.GetTokenStrFunc == nil {
@@ -79,7 +79,7 @@ func configVerify(configs ...*Config) (jwtDecodeFunc, *Config) {
 	return jwtDecode, cfg
 }
 
-func FiberAuth(user any, configs ...*Config) fiber.Handler {
+func FiberAuth(user any, configs ...*FiberAuthConfig) fiber.Handler {
 	jwtDecode, cfg := configVerify(configs...)
 	return func(c *fiber.Ctx) error {
 		var (
