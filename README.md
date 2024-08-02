@@ -6,6 +6,13 @@
 ## ctx
 > 生成带过期时间的content,默认为10s
 
+## excel
+> GetCell：获取对应列名称
+> 
+> NewExcelFile：创建新的文件
+> 
+> FillExcelFile：填充数据
+
 ## tools
 > compare 比大小
 > 
