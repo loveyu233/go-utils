@@ -16,7 +16,7 @@ func MustInitESClient(config ...EsConfig) *elastic.Client {
 	var esConnConfig []elastic.ClientOptionFunc
 	if len(config) > 0 {
 		if config[0].Endpoints == "" {
-			esConnConfig = append(esConnConfig, elastic.SetURL("http:// 10.0.1.1:9200"))
+			esConnConfig = append(esConnConfig, elastic.SetURL("http://127.0.0.1:9200"))
 		} else {
 			esConnConfig = append(esConnConfig, elastic.SetURL(config[0].Endpoints))
 		}
